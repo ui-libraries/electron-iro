@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Video Window</title>
+    <style>
+      #my-video{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        transform: translateY(30%);
+        width: 1280;
+        height: 720;
+        /*-webkit-app-region: drag;*/
+      }
+
+      html, body {
+        background: rgba(0, 0, 0, 0.5);
+        height: 99%;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="close">Click Me</button>
+    <video id="my-video" autoplay loop>
+      <source src="DanceVideo.mp4" type="video/mp4">
+    </video>
+
+    <script>
+      var ipcRenderer = require('electron').ipcRenderer
+
+      var vidBtn = document.getElementById('close')
+      vidBtn.addEventListener('click', function() {
+        ipcRenderer.send('close-child')
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+#login { display: none; }
+#loggedin { display: none; }
+body { margin:0; padding:0; }
+#map {
+  border-left: 1px solid #fff;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+}
+
+#content {
+  /*display: none;*/
+  z-index: 10;
+}
+
+#video {
+  background-color: black;
+}
+
+.center {
+  /*display: block;*/
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+}
+
+.map-legend .swatch {
+  width:20px;
+  height:20px;
+  float:right;
+  margin-right:12px;
+  }
+.leaflet-popup-close-button {
+  display: none;
+  }
+.leaflet-popup-content-wrapper {
+  pointer-events: none;
+  }
+
+  /*new code*/
+  .sidebar {
+    width: 27%;
+    height: 100vh;
+    float: right;
+    background-color: #cecece;
+    opacity: 0.75;
+    border-left: 2px solid white;
+    z-index: 1;
+  }
+
+  .info {
+    padding: 0px 20px 0px 20px;
+    margin: 0px;
+    font-family: 'Cormorant Garamond', serif;
+    color: #275f9d;
+    font-weight: 700;
+  }
+
+  .info h3 {
+    font-size: 1.7em;
+    line-height: 5px;
+  }
+
+  .info p {
+    line-height: 30px;
+    font-size: 1.25em;
+  }
+
+  h1 {
+    padding: 0px 20px 0px 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #cc4c02;
+    font-weight: 800;
+    text-align: center;
+    font-size: 3.5em;
+    border-bottom: 2px solid white;
+  }

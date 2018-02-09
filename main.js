@@ -22,31 +22,23 @@ function createWindow () {
     slashes: true
   }))
 
+  //Creating a child window to the mainWindow that will correspond
+  //with video.html and will show when the video needs to be played
   let child = new BrowserWindow({parent: mainWindow, modal: true, height: 550, frame: false, show: false, transparent: true, fullscreen: true})
   child.loadURL(url.format({
     pathname: path.join(__dirname, 'video.html'),
     protocol: 'file:',
     slashes: true
   }))
-  child.once('ready-to-show', () => {
-    child.show()
-  })
 
-
-  child.setMovable(true)
-
-  child.setMenu(null)
   // Open the DevTools.
   child.webContents.openDevTools()
   mainWindow.webContents.openDevTools()
 
-
-  //adding custom code here
+  //setting both windows to not have menus and the map to be full screen
   mainWindow.setMenu(null)
   mainWindow.setFullScreen(true)
-
-
-
+  child.setMenu(null)
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -56,15 +48,33 @@ function createWindow () {
     mainWindow = null
   })
 
-  setInterval(function(){
-    child.hide()
-        setTimeout(function() {
-            child.show()
-          }, 30000);
-  }, 60000);
+  //simple alternating of windows
+  /*function alternate() {
+    setInterval(function(){
+      child.show()
+          setTimeout(function() {
+              child.hide()
+            }, 3000);
+    }, 6000);
+  }*/
 
+  //The main process recieves 'reset' from index.html when that
+  //browser has been inactive for a set amount of time. The main
+  //process then sends a message to the child to reset the video
+  ipcMain.on('reset', function() {
+    child.webContents.send('reset');
+  })
+
+  //Closes the child window when the main process recieves 'close-child'
+  //from either of the other two renderer processes
   ipcMain.on('close-child', function() {
     child.hide()
+  })
+
+  //Opens the child window when the main process recieves 'open-child'
+  //from either of the other two renderer processes
+  ipcMain.on('open-child', function() {
+    child.show()
   })
 }
 

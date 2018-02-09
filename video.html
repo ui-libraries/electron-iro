@@ -12,6 +12,7 @@
         width: 1280;
         height: 720;
         /*-webkit-app-region: drag;*/
+        z-index: 5;
       }
 
       html, body {
@@ -21,15 +22,27 @@
     </style>
   </head>
   <body>
-    <button id="close">Click Me</button>
-    <video id="my-video" autoplay loop>
-      <source src="DanceVideo.mp4" type="video/mp4">
+    <!--<button id="close">Click Me</button>-->
+    <video id="my-video" autoplay loop src="DanceVideo.mp4" type="video/mp4">
     </video>
 
     <script>
+      //used to send messages
       var ipcRenderer = require('electron').ipcRenderer
 
-      var vidBtn = document.getElementById('close')
+      //when video.html recieves 'reset' fromt the main process
+      //it will restart the video and send a message that the
+      //video is ready to open back to the main process
+      ipcRenderer.on('reset', function() {
+        var vid = document.getElementById('my-video');
+        vid.currentTime = 0;
+        ipcRenderer.send('open-child')
+        vid.play()
+      });
+
+      //used to close the window based on a click no matter
+      //where the click is at
+      var vidBtn = document.getElementsByTagName('body')[0]
       vidBtn.addEventListener('click', function() {
         ipcRenderer.send('close-child')
       })

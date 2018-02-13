@@ -23,7 +23,7 @@
   </head>
   <body>
     <!--<button id="close">Click Me</button>-->
-    <video id="my-video" autoplay loop src="DanceVideo.mp4" type="video/mp4">
+    <video id="my-video" autoplay src="DanceVideo.mp4" type="video/mp4">
     </video>
 
     <script>
@@ -33,6 +33,11 @@
       //when video.html recieves 'reset' fromt the main process
       //it will restart the video and send a message that the
       //video is ready to open back to the main process
+      var video = document.getElementById('my-video');
+      video.addEventListener('ended', function() {
+        ipcRenderer.send('close-child')
+      })
+
       ipcRenderer.on('reset', function() {
         var vid = document.getElementById('my-video');
         vid.currentTime = 0;

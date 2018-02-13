@@ -24,7 +24,7 @@ function createWindow () {
 
   //Creating a child window to the mainWindow that will correspond
   //with video.html and will show when the video needs to be played
-  let child = new BrowserWindow({parent: mainWindow, modal: true, height: 550, frame: false, show: false, transparent: true, fullscreen: true})
+  let child = new BrowserWindow({parent: mainWindow, modal: true, frame: false, show: false, transparent: true, fullscreen: true})
   child.loadURL(url.format({
     pathname: path.join(__dirname, 'video.html'),
     protocol: 'file:',

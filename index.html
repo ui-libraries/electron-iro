@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <title>IRO Downloads App</title>
+
+
     <script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
     <link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
     <!--new code-->
@@ -142,27 +144,28 @@
     <script>//map from IRO downloads html page off of dsph-dev
     L.mapbox.accessToken = 'pk.eyJ1IjoicmNzaGVwYXJkIiwiYSI6IjYwYjI0NzdmNDQwM2YzNTc1ODI2NWZhNTU1ZTVmNjY4In0.ct_UnOxwtV_WIGwzyG0Rxw';
 
-      var map = L.mapbox.map('map', 'mapbox.streets',{legendControl: {
+      var map = L.mapbox.map('map', 'mapbox.streets',{
+        legendControl: {
             // Any of the valid control positions:
             // https://www.mapbox.com/mapbox.js/api/v2.2.1/l-control/#control-positions
             position: 'bottomleft',
-        }})
-        .setView([20, 11.5], 2);
+        },
+        minZoom: 3,
+        maxZoom: 12,
+      });
+        map.setView([20, 11.5], 3);
+
 
         //making sure the map can't pan past the tiles
-        var southWest = L.latLng(-89.98155760646617, -180),
-        northEast = L.latLng(89.99346179538875, 180);
+        var southWest = L.latLng(-89.98155760646617, -180);
+        var northEast = L.latLng(89.99346179538875, 180);
         var bounds = L.latLngBounds(southWest, northEast);
 
         map.setMaxBounds(bounds);
         map.on('drag', function() {
-            map.panInsideBounds(bounds, { animate: false });
+            map.panInsideBounds(bounds, { animate: true });
         });
 
-        /*
-        map.setZoom(3, {
-          minZoom: '3'
-        })*/
       var popup = new L.Popup({ autoPan: false });
       //this can also be a javascript standalone file, but for IRO and embedding, you can put the geojson right into the html code
 
@@ -317,6 +320,7 @@
            open = setInterval(function() {
              ipcRenderer.send('reset')
            }, 330000)
+           map.setView([20, 11.5], 3);
          }
 
          function resetTimer() {
@@ -327,6 +331,9 @@
         }
       }
       idleTimer();
+
+      //add a condition for if index.html receives a message from video.html saying the
+      //video is done and then do map.setView and use the original parameters from above??
 
     </script>
 

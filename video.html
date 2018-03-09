@@ -4,33 +4,39 @@
     <meta charset="utf-8">
     <title>Video Window</title>
     <style>
-      #my-video{
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        transform: translateY(30%);
-        width: 1280;
-        height: 720;
-        /*-webkit-app-region: drag;*/
-        z-index: 5;
-      }
+        html, body {
+          background: rgba(0, 0, 0, 0.5);
+          overflow-x:hidden;
+          overflow-y: hidden;
+          height:100%;
 
-      html, body {
-        background: rgba(0, 0, 0, 0.5);
-        height: 99%;
-      }
+          }
+
+        #my-video{
+          display: block;
+          width:50%;
+          transform: translateY(50%);
+          margin-left: auto;
+          margin-right: auto;
+
+          /*
+          width: 1280px;
+          height: 720px;
+          -webkit-app-region: drag;*/
+          z-index: 5;
+        }
     </style>
   </head>
   <body>
     <!--<button id="close">Click Me</button>-->
-    <video id="my-video" autoplay src="DanceVideo.mp4" type="video/mp4">
+    <video id="my-video" src="DanceVideo.mp4" type="video/mp4">
     </video>
 
     <script>
       //used to send messages
       var ipcRenderer = require('electron').ipcRenderer
 
-      //when video.html recieves 'reset' fromt the main process
+      //when video.html recieves 'reset' from the main process
       //it will restart the video and send a message that the
       //video is ready to open back to the main process
       var video = document.getElementById('my-video');
@@ -49,6 +55,7 @@
       //where the click is at
       var vidBtn = document.getElementsByTagName('body')[0]
       vidBtn.addEventListener('click', function() {
+        video.pause();
         ipcRenderer.send('close-child')
       })
     </script>

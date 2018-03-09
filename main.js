@@ -48,16 +48,6 @@ function createWindow () {
     mainWindow = null
   })
 
-  //simple alternating of windows
-  /*function alternate() {
-    setInterval(function(){
-      child.show()
-          setTimeout(function() {
-              child.hide()
-            }, 3000);
-    }, 6000);
-  }*/
-
   //The main process recieves 'reset' from index.html when that
   //browser has been inactive for a set amount of time. The main
   //process then sends a message to the child to reset the video

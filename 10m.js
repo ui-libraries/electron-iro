@@ -156,11 +156,11 @@ var latLngArray = [
 	['Yemen', 15.2286135489, 45.2301765055],
 	['South Africa', -29.1305592337, 25.1061642602],
 	['Zambia', -14.6206637215, 27.827040039],
-	['Zimbabwe', -19.025696431, 29.8521933367],
-]
+	['Zimbabwe', -19.025696431, 29.8521933367]
+];
 
 var latLngData = {
-}
+};
 
 var milJson = {
 	"type": "FeatureCollection",
@@ -25573,17 +25573,17 @@ var countriesArray = [
 
 ]
 
-for (i = 0; i < latLngArray.length; i++) {
-	country = latLngArray[i][0]
-	coordinates = [latLngArray[i][1], latLngArray[i][2]]
+for (var i = 0; i < latLngArray.length; i++) {
+	var country = latLngArray[i][0]
+	var coordinates = [latLngArray[i][1], latLngArray[i][2]]
 	latLngData[country] = coordinates
 }
 
 for (i = 0; i < milJson.features.length; i++) {
 	if (Object.keys(latLngData).indexOf(milJson.features[i].properties.Country) >= 0) {
 		country = milJson.features[i].properties.Country;
-		downloads = milJson.features[i].properties.Downloads;
-		pushArray = [country, downloads]
+		var downloads = milJson.features[i].properties.Downloads;
+		var pushArray = [country, downloads]
 		countriesArray.push(pushArray)
 	}
 }

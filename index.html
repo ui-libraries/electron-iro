@@ -11,6 +11,7 @@
   <script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
   <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
   <script src="10m.js" type="text/javascript"></script>
+  <script src="turn.js" type="text/javascript"></script>
 </head>
 <body>
   <div id="content">
@@ -31,17 +32,38 @@
     </div>
     <div id="info" class="sidebar sideinfo">
       <h3 style="text-align: center;">10 MILLION DOWNLOADS</h3>
-      <p>&emsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <p>&emsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>&emsp;Iowa Research Online (IRO), the University of Iowa Libraries' open access research repository, surpassed 10 million downloads in January 2018. IRO preserves and provides access to research and creative scholarhip created by the University of Iowa's faculty, students, and staff. The repository was launched in January 2009, and since then, its materials have been downloaded in 234 countries around the world.</p>
     </div>
     <div id="faq" class="sidebar sideinfo">
-      <h3 style="text-align: center;">FREQUENTLY ASKED QUESTIONS</h3>
+        <h3 style="text-align: center;">FREQUENTLY ASKED QUESTIONS</h3>
+        <p><span class="bold">Who can contribute to IRO?</span> Any University of Iowa researcher (staff or faculty) can contribute to IRO, as long as copyright allows. The repository also includes some UI student
+        work (theses and dissertations, honors theses, and selected class projects).</p>
+        <p><span class="bold">What's the benefit of contributing to IRO?</span> Work appearing in IRO gains wider availability since it's accessible online without restrictions (no paywall requiring paid membership).</p>
+        <p><span class="bold">Who can access materials in IRO?</span> Anyone in the world may access for free.</p>
+        <p><span class="bold">What's the all-time most popular download?</span> Nurse manager competencies.</p>
+        <p><span class="bold">What is the most popular download in the US?</span> Life and Adventures of Jack Engle: An Auto-Biography.</p>
+        <p><span class="bold">What are the most popular downloads outside the US?</span></p>
+        <ul>
+            <li>United Kingdom: Design of wind turbine tower and foundation systems: optimization approach.</li>
+            <li>India: Chemical, physical, and mechanical properties of nanomaterials and its applications.</li>
+            <li>Phillipines: The caregiver's journey: a phenomenological study of the lived experience of leisure for caregivers in the sandwich generation who care for a parent with dementia.</li>
+            <li>China: Oxidation and reactivity of 3,4-dihydroxyphenylacetaldehyde, a reacitve intermediate of dopamine metabolism.</li>
+        </ul>
     </div>
     <div id="collections" class="sidebar sideinfo">
       <h3 style="text-align: center;">TOP COLLECTIONS</h3>
       <p>Directed and Edited by Eloy Barragán. Publication Date: 1-29-16. A man and a woman explore the tension and eroticism of learning
         amid the lonely geometry of a library's books and chairs. With an original score by the contemporary British composer Peter Mauder.</p>
       <video id="my-video" src="DanceVideo.mp4" type="video/mp4" loop></video>
+      <p class="nurse_popup_open" style="text-decoration: underline;">Nurse manager competencies</p>
+        <div id="nurse_popup">
+            <div id="book">
+                <div style="background-image: url('images/img1.png');"></div>
+                <div style="background-image: url('images/img2.png');"></div>
+                <div style="background-image: url('images/img3.png');"></div>
+                <div style="background-image: url('images/img4.png');"></div>
+            </div>
+        </div>
     </div>
   </div>
   <script>
@@ -177,6 +199,7 @@
         $('#info').hide();
         $('#faq').hide();
         $('#collections').hide();
+        $('#nurse_popup').popup('hide');
         ipcRenderer.send('reset')
         $('#touchPan').show('slow');
         var rotate = function(){
@@ -191,19 +214,19 @@
               popup.openOn(map);
               setTimeout(function() {
                 map.closePopup()
-              }, 1000);
+              }, 5000);
             }
             else {
               return rotate();
             }
-            insideRotate = setTimeout(looper, 1000);
+            insideRotate = setTimeout(looper, 5000);
           };
           looper();
         };
         rotate()
         open = setInterval(function() {
           ipcRenderer.send('reset')
-        }, 330000) //set this for length of video + amount of break time you want in between playing the video
+        }, 450000) //set this for length of video + amount of break time you want in between playing the video
         map.setView([20, 11.5], 3);
       }
 
@@ -217,6 +240,32 @@
 
     idleTimer();
     $('.leaflet-control-attribution').hide()
+      
+      
+    //////CODE FOR PDF POPUPS//////////
+    $(document).ready(function() {
+        // Initialize the plugin
+        $('#nurse_popup').popup({
+            onopen: function() {
+                $('#book').turn("page", 1);
+            }
+        });
+    });
+      
+    $(window).ready(function() {
+        $("#book").turn({
+            display: 'double',
+            acceleration: true,
+            elevation: 50
+        });
+    });
+      
+    /*$(window).bind('keydown', function(e) {
+        if (e.keyCode==37)
+            $('#book').turn('previous');
+        else if (e.keyCode==39)
+            $('#book').turn('next')
+    });*/
 
     /////////CODE FOR NAVIGATION//////////
     //button for the hamburger icon

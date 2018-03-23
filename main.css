@@ -58,6 +58,10 @@ body { margin:0; padding:0; overflow: hidden;}
   font-size: 1.25em;
 }
 
+.bold {
+    color: #1c4470;
+}
+
 #info {
   display: none;
 }
@@ -116,14 +120,16 @@ body { margin:0; padding:0; overflow: hidden;}
   padding: 10px 10px;
   float: right;
   background-color: #cecece;
-  opacity: 0.95;
+  opacity: 0.99;
   border: 3px solid white;
   border-right: none;
   border-top-left-radius: 7px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 7px;
-  z-index: 1;
+  z-index: 2;
+  position:relative;
+  right:-2px;
 }
 
 #my-video {
@@ -145,4 +151,19 @@ body { margin:0; padding:0; overflow: hidden;}
   left: 50%;
   margin-top: -7%;
   margin-left: -5%;
+}
+
+/*STUFF FOR BOOK*/
+#book {
+    width: 1280px;
+    height: 852px;
+}
+
+#book .turn-page {
+    background-color: #ddd;
+    background-size: 100% 100%;
+}
+
+#nurse_popup {
+    overflow: hidden;
 }

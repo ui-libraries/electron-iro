@@ -7,6 +7,7 @@
   <link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link href="main.css" rel="stylesheet" type="text/css"/>
   <script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
   <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
@@ -15,7 +16,7 @@
 </head>
 <body>
   <div id="content">
-    <img id="touchPan" src="panning.gif">
+    <!--<img id="touchPan" src="panning.gif">-->
     <div id='map'></div>
     <div id="header" class="sidebar">
       <!--<audio autoplay loop style="z-index: 10, display: block">
@@ -26,7 +27,7 @@
     </div>
     <img id="icon" src="icon.png" width='40' height='40'>
     <div id="navbar" class="sidebar">
-      <button type="button" id="abtBtn">ABOUT</button>
+      <button type="button" id="abtBtn" autofocus>ABOUT</button>
       <button type="button" id="faqBtn">FAQ</button>
       <button type="button" id="colBtn">COLLECTIONS</button>
     </div>
@@ -55,7 +56,7 @@
       <p>Directed and Edited by Eloy Barragán. Publication Date: 1-29-16. A man and a woman explore the tension and eroticism of learning
         amid the lonely geometry of a library's books and chairs. With an original score by the contemporary British composer Peter Mauder.</p>
       <video id="my-video" src="DanceVideo.mp4" type="video/mp4" loop></video>
-      <p class="nurse_popup_open" style="text-decoration: underline;">Nurse manager competencies</p>
+      <!--<p class="nurse_popup_open" style="text-decoration: underline;">Nurse manager competencies</p>
         <div id="nurse_popup">
             <div id="book">
                 <div style="background-image: url('images/img1.png');"></div>
@@ -64,7 +65,7 @@
                 <div style="background-image: url('images/img4.png');"></div>
             </div>
         </div>
-    </div>
+    </div>-->
   </div>
   <script>
     //map from IRO downloads html page off of dsph-dev
@@ -173,10 +174,10 @@
     var ipcRenderer = require('electron').ipcRenderer;
     var video = document.getElementById('my-video')
     var open, insideRotate;
-    var touchPan = document.getElementById('touchPan');
+    /*var touchPan = document.getElementById('touchPan');
     touchPan.addEventListener('click', function() {
       $('#touchPan').hide('slow');
-    })
+    })*/
 
     function idleTimer() {
       var t;
@@ -185,11 +186,11 @@
       window.onscroll = resetTimer;
       window.onload = resetTimer;
       window.onclick = function(){
-        $('#touchPan').hide('slow');
+        /*$('#touchPan').hide('slow');*/
         resetTimer();
       }; //checks for clicks anywhere but map tiles
       countriesLayer.on('click', function() {
-        $('#touchPan').hide('slow');
+        /*$('#touchPan').hide('slow');*/
         resetTimer()
       }) //checks for clicks on map tiles
 
@@ -199,9 +200,9 @@
         $('#info').hide();
         $('#faq').hide();
         $('#collections').hide();
-        $('#nurse_popup').popup('hide');
+        /*$('#nurse_popup').popup('hide');*/
         ipcRenderer.send('reset')
-        $('#touchPan').show('slow');
+        /*$('#touchPan').show('slow');*/
         var rotate = function(){
           var loop = countriesArray.length;
           var looper = function(){
@@ -234,7 +235,7 @@
         clearTimeout(insideRotate);
         clearInterval(open);
         clearTimeout(t);
-        t = setTimeout(openChild, 10000);  // time is in milliseconds
+        t = setTimeout(openChild, 150000);  // time is in milliseconds
       }
     }
 
@@ -243,7 +244,7 @@
       
       
     //////CODE FOR PDF POPUPS//////////
-    $(document).ready(function() {
+    /*$(document).ready(function() {
         // Initialize the plugin
         $('#nurse_popup').popup({
             onopen: function() {
@@ -258,7 +259,7 @@
             acceleration: true,
             elevation: 50
         });
-    });
+    });*/
       
     /*$(window).bind('keydown', function(e) {
         if (e.keyCode==37)

@@ -40,12 +40,11 @@ body { margin:0; padding:0; overflow: hidden;}
 .sideinfo {
   padding: 0px 20px 0px 20px;
   margin: 0px;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Montserrat', serif;
   color: #275f9d;
   font-weight: 700;
   clear: both;
   border-bottom: 2px solid white;
-  height: 1500px;
 }
 
 .sideinfo h3 {
@@ -55,11 +54,11 @@ body { margin:0; padding:0; overflow: hidden;}
 
 .sideinfo p {
   line-height: 30px;
-  font-size: 1.25em;
+  font-size: 1em;
 }
 
 .bold {
-    color: #1c4470;
+    color: #cc4c02;
 }
 
 #info {
@@ -87,17 +86,17 @@ body { margin:0; padding:0; overflow: hidden;}
 #header h1 {
   padding: 0px 0px;
   margin: 25px 0px 0px 0px;
-  font-family: 'Josefin Sans', sans-serif;
-  color: #cc4c02;
+  font-family: 'Montserrat', sans-serif;
+  color: #275f9d;
   font-weight: 800;
   text-align: center;
-  font-size: 3.5em;
+  font-size: 3em;
 }
 
 #navbar {
   padding: 0px 20px 0px 20px;
   margin: 0px;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Montserrat', serif;
   font-weight: 700;
   clear: both;
   border-bottom: 2px solid white;
@@ -107,12 +106,17 @@ body { margin:0; padding:0; overflow: hidden;}
 
 #navbar button {
   background-color: #cecece;
-  color: #8c2d04;
+  color: #fff;
   opacity: 0.95;
   border: none;
   font-size: 1.5em;
   font-weight: 500;
   margin: 5px 5px;
+}
+
+button:focus{
+    outline:0;
+    color:#cc4c02!important;
 }
 
 #icon {

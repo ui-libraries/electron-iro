@@ -48,13 +48,17 @@ body { margin:0; padding:0; overflow: hidden;}
 }
 
 .sideinfo h3 {
-  font-size: 1.7em;
+  font-size: 1em;
   line-height: 5px;
 }
 
-.sideinfo p {
-  line-height: 30px;
-  font-size: 1em;
+.sideinfo p{
+  line-height: 15px;
+  font-size: .6em;
+}
+
+.sideinfo li{
+  font-size: .6em;
 }
 
 .bold {
@@ -74,7 +78,7 @@ body { margin:0; padding:0; overflow: hidden;}
 }
 
 #collections p {
-  font-size: 1em;
+  font-size: .6em;
 }
 
 #header {
@@ -90,7 +94,7 @@ body { margin:0; padding:0; overflow: hidden;}
   color: #275f9d;
   font-weight: 800;
   text-align: center;
-  font-size: 3em;
+  font-size: 2em;
 }
 
 #navbar {
@@ -109,7 +113,7 @@ body { margin:0; padding:0; overflow: hidden;}
   color: #fff;
   opacity: 0.95;
   border: none;
-  font-size: 1.5em;
+  font-size: .8em;
   font-weight: 500;
   margin: 5px 5px;
 }
@@ -141,6 +145,7 @@ button:focus{
    max-height: 100%;
    display: inline-block;
    vertical-align: middle;
+   padding-bottom: 15px;
 }
 
 #touchPan {
@@ -159,8 +164,8 @@ button:focus{
 
 /*STUFF FOR BOOK*/
 .book {
-    width: 1280px;
-    height: 852px;
+    width: 768px;
+    height: 512px;
 }
 
 .book .turn-page {

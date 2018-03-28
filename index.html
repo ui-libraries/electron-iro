@@ -1,449 +1,464 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>IRO Downloads App</title>
-  <script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
-  <link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
-  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <link href="main.css" rel="stylesheet" type="text/css"/>
-  <script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
-  <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
-  <script src="10m.js" type="text/javascript"></script>
-  <script src="turn.js" type="text/javascript"></script>
-</head>
-<body>
-  <div id="content">
-    <!--<img id="touchPan" src="panning.gif">-->
-    <div id='map'></div>
-    <div id="header" class="sidebar">
-      <!--<audio autoplay loop style="z-index: 10, display: block">
-      <source src="danceMusicShort.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>-->
-      <h1>IOWA RESEARCH ONLINE</h1>
-    </div>
-    <img id="icon" src="icon.png" width='40' height='40'>
-    <div id="navbar" class="sidebar">
-      <button type="button" id="abtBtn" autofocus>ABOUT</button>
-      <button type="button" id="faqBtn">FAQ</button>
-      <button type="button" id="colBtn">COLLECTIONS</button>
-    </div>
-    <div id="info" class="sidebar sideinfo">
-      <h3 style="text-align: center;">10 MILLION DOWNLOADS</h3>
-      <p>&emsp;Iowa Research Online (IRO), the University of Iowa Libraries' open access research repository, surpassed 10 million downloads in January 2018. IRO preserves and provides access to research and creative scholarhip created by the University of Iowa's faculty, students, and staff. The repository was launched in January 2009, and since then, its materials have been downloaded in 234 countries around the world.</p>
-    </div>
-    <div id="faq" class="sidebar sideinfo">
-        <h3 style="text-align: center;">FREQUENTLY ASKED QUESTIONS</h3>
-        <p><span class="bold">Who can contribute to IRO?</span> Any University of Iowa researcher (staff or faculty) can contribute to IRO, as long as copyright allows. The repository also includes some UI student
-        work (theses and dissertations, honors theses, and selected class projects).</p>
-        <p><span class="bold">What's the benefit of contributing to IRO?</span> Work appearing in IRO gains wider availability since it's accessible online without restrictions (no paywall requiring paid membership).</p>
-        <p><span class="bold">Who can access materials in IRO?</span> Anyone in the world may access for free.</p>
-        <p><span class="bold">What's the all-time most popular download?</span> Nurse manager competencies.</p>
-        <p><span class="bold">What is the most popular download in the US?</span> Life and Adventures of Jack Engle: An Auto-Biography.</p>
-        <p><span class="bold">What are the most popular downloads outside the US?</span></p>
-        <ul>
-            <li>United Kingdom: Design of wind turbine tower and foundation systems: optimization approach.</li>
-            <li>India: Chemical, physical, and mechanical properties of nanomaterials and its applications.</li>
-            <li>Phillipines: The caregiver's journey: a phenomenological study of the lived experience of leisure for caregivers in the sandwich generation who care for a parent with dementia.</li>
-            <li>China: Oxidation and reactivity of 3,4-dihydroxyphenylacetaldehyde, a reacitve intermediate of dopamine metabolism.</li>
-        </ul>
-    </div>
-    <div id="collections" class="sidebar sideinfo">
-      <h3 style="text-align: center;">TOP COLLECTIONS</h3>
-      <p>Directed and Edited by Eloy Barragán. Publication Date: 1-29-16. A man and a woman explore the tension and eroticism of learning
-        amid the lonely geometry of a library's books and chairs. With an original score by the contemporary British composer Peter Mauder.</p>
-      <video id="my-video" src="DanceVideo.mp4" type="video/mp4" loop></video>
-      <p class="nurse_popup_open" style="text-decoration: underline;">Nurse manager competencies</p>
-        <div id="nurse_popup" class="popup">
-            <img class="nurse_popup_close" src="close-x-orange.png" width="20" height="20">
-            <div id="nurse_book" class="book">
-                <div class="hard" style="background-image: url('images/Nurse/page1.png');"></div>
-                <div class="hard" style="background-image: url('images/Nurse/page2.png');"></div>
-                <div class="hard" style="background-image: url('images/Nurse/page3.png');"></div>
-                <div class="hard" style="background-image: url('images/Nurse/page4.png');"></div>
+    <head>
+        <meta charset="UTF-8">
+        <title>IRO Downloads App</title>
+
+        <!-- Insert this line above script imports  -->
+        <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+        <!-- normal script imports etc  -->
+        <script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
+        <link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link href="main.css" rel="stylesheet" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+        <script src="10m.js" type="text/javascript"></script>
+        <script src="turn.js" type="text/javascript"></script>
+
+        <!-- Insert this line after script imports -->
+        <script>if (window.module) module = window.module;</script>
+    </head>
+    <body>
+        <div id="content">
+            <!--<img id="touchPan" src="panning.gif">-->
+            <div id='map'></div>
+            <div id="header" class="sidebar">
+                <!--<audio autoplay loop style="z-index: 10, display: block">
+                <source src="danceMusicShort.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+                </audio>-->
+                <h1>IOWA RESEARCH ONLINE</h1>
+            </div>
+            <img id="icon" src="icon.png" width='40' height='40'>
+            <div id="navbar" class="sidebar">
+                <button type="button" id="abtBtn">ABOUT</button>
+                <button type="button" id="faqBtn">FAQ</button>
+                <button type="button" id="colBtn">COLLECTIONS</button>
+            </div>
+            <div id="info" class="sidebar sideinfo">
+                <h3 style="text-align: center;">10 MILLION DOWNLOADS</h3>
+                <p>&emsp;Iowa Research Online (IRO), the University of Iowa Libraries' open access research repository, surpassed 10 million downloads in January 2018. IRO preserves and provides access to research and creative scholarhip created by the University of Iowa's faculty, students, and staff. The repository was launched in January 2009, and since then, its materials have been downloaded in 234 countries around the world.</p>
+            </div>
+            <div id="faq" class="sidebar sideinfo">
+                <h3 style="text-align: center;">FREQUENTLY ASKED QUESTIONS</h3>
+                <p><span class="bold">Who can contribute to IRO?</span> Any University of Iowa researcher (staff or faculty) can contribute to IRO, as long as copyright allows. The repository also includes some UI student
+                    work (theses and dissertations, honors theses, and selected class projects).</p>
+                <p><span class="bold">What's the benefit of contributing to IRO?</span> Work appearing in IRO gains wider availability since it's accessible online without restrictions (no paywall requiring paid membership).</p>
+                <p><span class="bold">Who can access materials in IRO?</span> Anyone in the world may access for free.</p>
+                <p><span class="bold">What's the all-time most popular download?</span> Nurse manager competencies.</p>
+                <p><span class="bold">What is the most popular download in the US?</span> Life and Adventures of Jack Engle: An Auto-Biography.</p>
+                <p><span class="bold">What are the most popular downloads outside the US?</span></p>
+                <ul>
+                    <li>United Kingdom: Design of wind turbine tower and foundation systems: optimization approach.</li>
+                    <li>India: Chemical, physical, and mechanical properties of nanomaterials and its applications.</li>
+                    <li>Phillipines: The caregiver's journey: a phenomenological study of the lived experience of leisure for caregivers in the sandwich generation who care for a parent with dementia.</li>
+                    <li>China: Oxidation and reactivity of 3,4-dihydroxyphenylacetaldehyde, a reacitve intermediate of dopamine metabolism.</li>
+                </ul>
+            </div>
+            <div id="collections" class="sidebar sideinfo">
+                <h3 style="text-align: center;">TOP COLLECTIONS</h3>
+                <p>Directed and Edited by Eloy Barragán. Publication Date: 1-29-16. A man and a woman explore the tension and eroticism of learning
+                    amid the lonely geometry of a library's books and chairs. With an original score by the contemporary British composer Peter Mauder.</p>
+                <video id="my-video" src="DanceVideo.mp4" type="video/mp4" loop></video>
+                <p class="nurse_popup_open" style="text-decoration: underline;">Nurse manager competencies</p>
+                <div id="nurse_popup" class="popup">
+                    <img class="nurse_popup_close" src="close-x-orange.png" width="20" height="20">
+                    <div id="nurse_book" class="book">
+                        <div class="hard" style="background-image: url('images/Nurse/page1.png');"></div>
+                        <div class="hard" style="background-image: url('images/Nurse/page2.png');"></div>
+                        <div class="hard" style="background-image: url('images/Nurse/page3.png');"></div>
+                        <div class="hard" style="background-image: url('images/Nurse/page4.png');"></div>
+                    </div>
+                </div>
+                <p class="engle_popup_open" style="text-decoration: underline;">Life and Adventures of Jack Engle: An Auto-Biography</p>
+                <div id="engle_popup" class="popup">
+                    <img class="engle_popup_close" src="close-x-orange.png" width="20" height="20">
+                    <div id="engle_book" class="book">
+                        <div class="hard" style="background-image: url('images/JackEngle/page1.png');"></div>
+                        <div class="hard" style="background-image: url('images/JackEngle/page2.png');"></div>
+                        <div class="hard" style="background-image: url('images/JackEngle/page3.png');"></div>
+                        <div class="hard" style="background-image: url('images/JackEngle/page4.png');"></div>
+                        <div class="hard" style="background-image: url('images/JackEngle/page5.png');"></div>
+                    </div>
+                </div>
+                <p class="turbine_popup_open" style="text-decoration: underline;">Design of wind turbine tower and foundation systems: optimixation approach</p>
+                <div id="turbine_popup" class="popup">
+                    <img class="turbine_popup_close" src="close-x-orange.png" width="20" height="20">
+                    <div id="turbine_book" class="book">
+                        <div class="hard" style="background-image: url('images/WindTurbine/page1.png');"></div>
+                        <div class="hard" style="background-image: url('images/WindTurbine/page2.png');"></div>
+                        <div class="hard" style="background-image: url('images/WindTurbine/page3.png');"></div>
+                        <div class="hard" style="background-image: url('images/WindTurbine/page4.png');"></div>
+                    </div>
+                </div>
+                <p class="nano_popup_open" style="text-decoration: underline;">Chemical, physical, and mechanical properties of nanomaterials and its applications</p>
+                <div id="nano_popup" class="popup">
+                    <img class="nano_popup_close" src="close-x-orange.png" width="20" height="20">
+                    <div id="nano_book" class="book">
+                        <div class="hard" style="background-image: url('images/Nanomaterials/page1.png');"></div>
+                        <div class="hard" style="background-image: url('images/Nanomaterials/page2.png');"></div>
+                        <div class="hard" style="background-image: url('images/Nanomaterials/page3.png');"></div>
+                        <div class="hard" style="background-image: url('images/Nanomaterials/page4.png');"></div>
+                    </div>
+                </div>
+                <p class="caregiver_popup_open" style="text-decoration: underline;">The caregiver's journey: a phenomenological study of the lived experience of leisure for caregivers in the sandwich generation who care for a parent with dementia</p>
+                <div id="caregiver_popup" class="popup">
+                    <img class="caregiver_popup_close" src="close-x-orange.png" width="20" height="20">
+                    <div id="caregiver_book" class="book">
+                        <div class="hard" style="background-image: url('images/Caregiver/page1.png');"></div>
+                        <div class="hard" style="background-image: url('images/Caregiver/page2.png');"></div>
+                        <div class="hard" style="background-image: url('images/Caregiver/page3.png');"></div>
+                        <div class="hard" style="background-image: url('images/Caregiver/page4.png');"></div>
+                    </div>
+                </div>
+                <p class="oxidation_popup_open" style="text-decoration: underline;">Oxidation and reactivity of 3,4-dihydroxphenylacetaldehyde, a reactive intermediate of dopamine metabolism</p>
+                <div id="oxidation_popup" class="popup">
+                    <img class="oxidation_popup_close" src="close-x-orange.png" width="20" height="20">
+                    <div id="oxidation_book" class="book">
+                        <div style="background-image: url('images/Oxidation/page1.png');"></div>
+                        <div style="background-image: url('images/Oxidation/page2.png');"></div>
+                        <div style="background-image: url('images/Oxidation/page3.png');"></div>
+                        <div style="background-image: url('images/Oxidation/page4.png');"></div>
+                    </div>
+                </div>
             </div>
         </div>
-        <p class="engle_popup_open" style="text-decoration: underline;">Life and Adventures of Jack Engle: An Auto-Biography</p>
-        <div id="engle_popup" class="popup">
-            <img class="engle_popup_close" src="close-x-orange.png" width="20" height="20">
-            <div id="engle_book" class="book">
-                <div class="hard" style="background-image: url('images/JackEngle/page1.png');"></div>
-                <div class="hard" style="background-image: url('images/JackEngle/page2.png');"></div>
-                <div class="hard" style="background-image: url('images/JackEngle/page3.png');"></div>
-                <div class="hard" style="background-image: url('images/JackEngle/page4.png');"></div>
-                <div class="hard" style="background-image: url('images/JackEngle/page5.png');"></div>
-            </div>
-        </div>
-        <p class="turbine_popup_open" style="text-decoration: underline;">Design of wind turbine tower and foundation systems: optimixation approach</p>
-        <div id="turbine_popup" class="popup">
-            <img class="turbine_popup_close" src="close-x-orange.png" width="20" height="20">
-            <div id="turbine_book" class="book">
-                <div class="hard" style="background-image: url('images/WindTurbine/page1.png');"></div>
-                <div class="hard" style="background-image: url('images/WindTurbine/page2.png');"></div>
-                <div class="hard" style="background-image: url('images/WindTurbine/page3.png');"></div>
-                <div class="hard" style="background-image: url('images/WindTurbine/page4.png');"></div>
-            </div>
-        </div>
-        <p class="nano_popup_open" style="text-decoration: underline;">Chemical, physical, and mechanical properties of nanomaterials and its applications</p>
-        <div id="nano_popup" class="popup">
-            <img class="nano_popup_close" src="close-x-orange.png" width="20" height="20">
-            <div id="nano_book" class="book">
-                <div class="hard" style="background-image: url('images/Nanomaterials/page1.png');"></div>
-                <div class="hard" style="background-image: url('images/Nanomaterials/page2.png');"></div>
-                <div class="hard" style="background-image: url('images/Nanomaterials/page3.png');"></div>
-                <div class="hard" style="background-image: url('images/Nanomaterials/page4.png');"></div>
-            </div>
-        </div>
-        <p class="caregiver_popup_open" style="text-decoration: underline;">The caregiver's journey: a phenomenological study of the lived experience of leisure for caregivers in the sandwich generation who care for a parent with dementia</p>
-        <div id="caregiver_popup" class="popup">
-            <img class="caregiver_popup_close" src="close-x-orange.png" width="20" height="20">
-            <div id="caregiver_book" class="book">
-                <div class="hard" style="background-image: url('images/Caregiver/page1.png');"></div>
-                <div class="hard" style="background-image: url('images/Caregiver/page2.png');"></div>
-                <div class="hard" style="background-image: url('images/Caregiver/page3.png');"></div>
-                <div class="hard" style="background-image: url('images/Caregiver/page4.png');"></div>
-            </div>
-        </div>
-        <p class="oxidation_popup_open" style="text-decoration: underline;">Oxidation and reactivity of 3,4-dihydroxphenylacetaldehyde, a reactive intermediate of dopamine metabolism</p>
-        <div id="oxidation_popup" class="popup">
-            <img class="oxidation_popup_close" src="close-x-orange.png" width="20" height="20">
-            <div id="oxidation_book" class="book">
-                <div style="background-image: url('images/Oxidation/page1.png');"></div>
-                <div style="background-image: url('images/Oxidation/page2.png');"></div>
-                <div style="background-image: url('images/Oxidation/page3.png');"></div>
-                <div style="background-image: url('images/Oxidation/page4.png');"></div>
-            </div>
-        </div>
-    </div>
-  </div>
-  <script>
-    //map from IRO downloads html page off of dsph-dev
-    L.mapbox.accessToken = 'pk.eyJ1IjoicmNzaGVwYXJkIiwiYSI6IjYwYjI0NzdmNDQwM2YzNTc1ODI2NWZhNTU1ZTVmNjY4In0.ct_UnOxwtV_WIGwzyG0Rxw';
-    var map = L.mapbox.map('map', 'mapbox.streets',{
-      legendControl: {
-        // Any of the valid control positions:
-        // https://www.mapbox.com/mapbox.js/api/v2.2.1/l-control/#control-positions
-        position: 'bottomleft',
-      },
-      minZoom: 3,
-      maxZoom: 12,
-    });
-    map.setView([20, 11.5], 3);
-    //making sure the map can't pan past the tiles
-    var southWest = L.latLng(-89.98155760646617, -180);
-    var northEast = L.latLng(89.99346179538875, 180);
-    var bounds = L.latLngBounds(southWest, northEast);
+        <script>
+            //map from IRO downloads html page off of dsph-dev
+            L.mapbox.accessToken = 'pk.eyJ1IjoicmNzaGVwYXJkIiwiYSI6IjYwYjI0NzdmNDQwM2YzNTc1ODI2NWZhNTU1ZTVmNjY4In0.ct_UnOxwtV_WIGwzyG0Rxw';
+            var map = L.mapbox.map('map', 'mapbox.streets',{
+                legendControl: {
+                    // Any of the valid control positions:
+                    // https://www.mapbox.com/mapbox.js/api/v2.2.1/l-control/#control-positions
+                    position: 'bottomleft',
+                },
+                minZoom: 3,
+                maxZoom: 12,
+            });
+            map.setView([20, 11.5], 3);
+            //making sure the map can't pan past the tiles
+            var southWest = L.latLng(-89.98155760646617, -180);
+            var northEast = L.latLng(89.99346179538875, 180);
+            var bounds = L.latLngBounds(southWest, northEast);
 
-    map.setMaxBounds(bounds);
-    map.on('drag', function() {
-      map.panInsideBounds(bounds, { animate: true });
-    });
+            map.setMaxBounds(bounds);
+            map.on('drag', function() {
+                map.panInsideBounds(bounds, { animate: true });
+            });
 
-    var popup = new L.Popup({ autoPan: false });
-    var countriesLayer = L.geoJson(milJson,  {
-      style: getStyle,
-      onEachFeature: onEachFeature
-    }).addTo(map);
+            var popup = new L.Popup({ autoPan: false });
+            var countriesLayer = L.geoJson(milJson,  {
+                style: getStyle,
+                onEachFeature: onEachFeature
+            }).addTo(map);
 
-    function getStyle(feature) {
-      return {
-        weight: 2,
-        opacity: 0.1,
-        color: 'black',
-        fillOpacity: 0.7,
-        fillColor: getColor(feature.properties.Downloads)
-      };
-    }
+            function getStyle(feature) {
+                return {
+                    weight: 2,
+                    opacity: 0.1,
+                    color: 'black',
+                    fillOpacity: 0.7,
+                    fillColor: getColor(feature.properties.Downloads)
+                };
+            }
 
-    // get color depending on population density value
-    function getColor(d) {
-      return d > 100000 ? '#8c2d04' :
-      d > 50000  ? '#cc4c02' :
-      d > 10000  ? '#ec7014' :
-      d > 1000  ? '#fe9929' :
-      d > 500   ? '#fec44f' :
-      d > 25   ? '#fee391' :
-      d > 1   ? '#fff7bc' : '#ffffe5';
-    }
+            // get color depending on population density value
+            function getColor(d) {
+                return d > 100000 ? '#8c2d04' :
+                d > 50000  ? '#cc4c02' :
+                d > 10000  ? '#ec7014' :
+                d > 1000  ? '#fe9929' :
+                d > 500   ? '#fec44f' :
+                d > 25   ? '#fee391' :
+                d > 1   ? '#fff7bc' : '#ffffe5';
+            }
 
-    function onEachFeature(feature, layer) {
-      layer.on({
-        click: click,
-        //mouseout: mouseout,
-        //click: zoomToFeature
-      });
-    }
+            function onEachFeature(feature, layer) {
+                layer.on({
+                    click: click,
+                    //mouseout: mouseout,
+                    //click: zoomToFeature
+                });
+            }
 
-    var closeTooltip;
+            var closeTooltip;
 
-    function click(e) {
-      var layer = e.target;
-      popup.setLatLng(e.latlng);
-      popup.setContent('<div class="marker-title">' + layer.feature.properties.Country + '</div>' + layer.feature.properties.Downloads + ' downloads');
-      if (!popup._map) popup.openOn(map);
-      window.clearTimeout(closeTooltip);
-      // highlight feature
-      /*layer.setStyle({
+            function click(e) {
+                var layer = e.target;
+                popup.setLatLng(e.latlng);
+                popup.setContent('<div class="marker-title">' + layer.feature.properties.Country + '</div>' + layer.feature.properties.Downloads + ' downloads');
+                if (!popup._map) popup.openOn(map);
+                window.clearTimeout(closeTooltip);
+                // highlight feature
+                /*layer.setStyle({
         weight: 3,
         opacity: 0.3,
         fillOpacity: 0.9
       });*/
-      if (!L.Browser.ie && !L.Browser.opera) {
-        layer.bringToFront();
-      }
-    }
-
-    function mouseout(e) {
-      countriesLayer.resetStyle(e.target);
-      closeTooltip = window.setTimeout(function() {
-        map.closePopup();
-      }, 100);
-    }
-
-    function zoomToFeature(e) {
-      map.fitBounds(e.target.getBounds());
-    }
-
-    map.legendControl.addLegend(getLegendHTML());
-
-    function getLegendHTML() {
-      var COUNT = [1, 25, 500, 1000, 10000, 50000, 100000],
-      labels = [],
-      from, to;
-      for (var i = 0; i < COUNT.length; i++) {
-        from = COUNT[i];
-        to = COUNT[i + 1];
-        labels.push(
-          '<li><span class="swatch" style="background:' + getColor(from + 1) + '"></span> ' +
-          from + (to ? '&ndash;' + to : '+')) + '</li>';
-      }
-      return '<span>Total downloads</span><ul>' + labels.join('') + '</ul>';
-    }
-
-    var ipcRenderer = require('electron').ipcRenderer;
-    var video = document.getElementById('my-video')
-    var open, insideRotate;
-    /*var touchPan = document.getElementById('touchPan');
-    touchPan.addEventListener('click', function() {
-      $('#touchPan').hide('slow');
-    })*/
-
-    function idleTimer() {
-      var t;
-      window.ontouchstart = resetTimer;
-      window.ontouchmove = resetTimer;
-      window.onscroll = resetTimer;
-      window.onload = resetTimer;
-      window.onclick = function(){
-        /*$('#touchPan').hide('slow');*/
-        resetTimer();
-      }; //checks for clicks anywhere but map tiles
-      countriesLayer.on('click', function() {
-        /*$('#touchPan').hide('slow');*/
-        resetTimer()
-      }) //checks for clicks on map tiles
-
-      function openChild() {
-        video.pause();
-        video.currentTime = 0;
-        $('#info').hide();
-        $('#faq').hide();
-        $('#collections').hide();
-        /*$('#nurse_popup').popup('hide');*/
-        ipcRenderer.send('reset')
-        /*$('#touchPan').show('slow');*/
-        var rotate = function(){
-          var loop = countriesArray.length;
-          var looper = function(){
-            if (loop > 0) {
-              loop--;
-              country = countriesArray[loop][0]
-              downloads = countriesArray[loop][1]
-              popup.setLatLng(latLngData[country])
-              popup.setContent('<div class="marker-title">' + country + '</div>' + downloads + ' downloads')
-              popup.openOn(map);
-              setTimeout(function() {
-                map.closePopup()
-              }, 5000);
+                if (!L.Browser.ie && !L.Browser.opera) {
+                    layer.bringToFront();
+                }
             }
-            else {
-              return rotate();
+
+            function mouseout(e) {
+                countriesLayer.resetStyle(e.target);
+                closeTooltip = window.setTimeout(function() {
+                    map.closePopup();
+                }, 100);
             }
-            insideRotate = setTimeout(looper, 5000);
-          };
-          looper();
-        };
-        rotate()
-        open = setInterval(function() {
-          ipcRenderer.send('reset')
-        }, 450000) //set this for length of video + amount of break time you want in between playing the video
-        map.setView([20, 11.5], 3);
-      }
 
-      function resetTimer() {
-        clearTimeout(insideRotate);
-        clearInterval(open);
-        clearTimeout(t);
-        t = setTimeout(openChild, 150000);  // time is in milliseconds
-      }
-    }
+            function zoomToFeature(e) {
+                map.fitBounds(e.target.getBounds());
+            }
 
-    idleTimer();
-    $('.leaflet-control-attribution').hide()
+            map.legendControl.addLegend(getLegendHTML());
+
+            function getLegendHTML() {
+                var COUNT = [1, 25, 500, 1000, 10000, 50000, 100000],
+                    labels = [],
+                    from, to;
+                for (var i = 0; i < COUNT.length; i++) {
+                    from = COUNT[i];
+                    to = COUNT[i + 1];
+                    labels.push(
+                        '<li><span class="swatch" style="background:' + getColor(from + 1) + '"></span> ' +
+                        from + (to ? '&ndash;' + to : '+')) + '</li>';
+                }
+                return '<span>Total downloads</span><ul>' + labels.join('') + '</ul>';
+            }
+
+            var ipcRenderer = require('electron').ipcRenderer;
+            var video = document.getElementById('my-video')
+            var open, insideRotate;
+            /*var touchPan = document.getElementById('touchPan');
+            touchPan.addEventListener('click', function() {
+                $('#touchPan').hide('slow');
+            })*/
+
+            function idleTimer() {
+                var t;
+                window.ontouchstart = resetTimer;
+                window.ontouchmove = resetTimer;
+                window.onscroll = resetTimer;
+                window.onload = resetTimer;
+                window.onclick = function(){
+                    /*$('#touchPan').hide('slow');*/
+                    resetTimer();
+                }; //checks for clicks anywhere but map tiles
+                countriesLayer.on('click', function() {
+                    /*$('#touchPan').hide('slow');*/
+                    resetTimer()
+                }) //checks for clicks on map tiles
+
+                function openChild() {
+                    video.pause();
+                    video.currentTime = 0;
+                    $('#info').hide();
+                    $('#faq').hide();
+                    $('#collections').hide();
+                    /*$('#nurse_popup').popup('hide');*/
+                    ipcRenderer.send('reset')
+                    /*$('#touchPan').show('slow');*/
+                    var rotate = function(){
+                        var loop = countriesArray.length;
+                        var looper = function(){
+                            if (loop > 0) {
+                                loop--;
+                                country = countriesArray[loop][0]
+                                downloads = countriesArray[loop][1]
+                                popup.setLatLng(latLngData[country])
+                                popup.setContent('<div class="marker-title">' + country + '</div>' + downloads + ' downloads')
+                                popup.openOn(map);
+                                setTimeout(function() {
+                                    map.closePopup()
+                                }, 5000);
+                            }
+                            else {
+                                return rotate();
+                            }
+                            insideRotate = setTimeout(looper, 5000);
+                        };
+                        looper();
+                    };
+                    rotate()
+                    open = setInterval(function() {
+                        ipcRenderer.send('reset')
+                    }, 450000) //set this for length of video + amount of break time you want in between playing the video
+                    map.setView([20, 11.5], 3);
+                }
+
+                function resetTimer() {
+                    clearTimeout(insideRotate);
+                    clearInterval(open);
+                    clearTimeout(t);
+                    t = setTimeout(openChild, 150000);  // time is in milliseconds
+                }
+            }
+
+            idleTimer();
+            $('.leaflet-control-attribution').hide()
 
 
-    //////CODE FOR PDF POPUPS//////////
-    $(document).ready(function() {
-        // Initialize the plugin
-        $('#nurse_popup').popup({
-            onopen: function() {
-                $('#nurse_book').turn("page", 1);
-            },
-            blur: false
-        });
-        $('#engle_popup').popup({
-            onopen: function() {
-                $('#engle_book').turn("page", 1);
-            },
-            blur: false
-        });
-        $('#turbine_popup').popup({
-            onopen: function() {
-                $('#turbine_book').turn("page", 1);
-            },
-            blur: false
-        });
-        $('#nano_popup').popup({
-            onopen: function() {
-                $('#nano_book').turn("page", 1);
-            },
-            blur: false
-        });
-        $('#caregiver_popup').popup({
-            onopen: function() {
-                $('#caregiver_book').turn("page", 1);
-            },
-            blur: false
-        });
-        $('#oxidation_popup').popup({
-            onopen: function() {
-                $('#oxidation_book').turn("page", 1);
-            },
-            blur: false
-        });
-    });
+            //////CODE FOR PDF POPUPS//////////
+            $(document).ready(function() {
+                // Initialize the plugin
+                $('#nurse_popup').popup({
+                    onopen: function() {
+                        $('#nurse_book').turn("page", 1);
+                    },
+                    blur: false
+                });
+                $('#engle_popup').popup({
+                    onopen: function() {
+                        $('#engle_book').turn("page", 1);
+                    },
+                    blur: false
+                });
+                $('#turbine_popup').popup({
+                    onopen: function() {
+                        $('#turbine_book').turn("page", 1);
+                    },
+                    blur: false
+                });
+                $('#nano_popup').popup({
+                    onopen: function() {
+                        $('#nano_book').turn("page", 1);
+                    },
+                    blur: false
+                });
+                $('#caregiver_popup').popup({
+                    onopen: function() {
+                        $('#caregiver_book').turn("page", 1);
+                    },
+                    blur: false
+                });
+                $('#oxidation_popup').popup({
+                    onopen: function() {
+                        $('#oxidation_book').turn("page", 1);
+                    },
+                    blur: false
+                });
+            });
 
-    $(window).ready(function() {
-        $("#nurse_book").turn({
-            display: 'double',
-            acceleration: true,
-            elevation: 50
-        });
-        $("#engle_book").turn({
-            display: 'double',
-            acceleration: true,
-            elevation: 50
-        });
-        $("#turbine_book").turn({
-            display: 'double',
-            acceleration: true,
-            elevation: 50
-        });
-        $("#nano_book").turn({
-            display: 'double',
-            acceleration: true,
-            elevation: 50
-        });
-        $("#caregiver_book").turn({
-            display: 'double',
-            acceleration: true,
-            elevation: 50
-        });
-        $("#oxidation_book").turn({
-            display: 'double',
-            acceleration: true,
-            elevation: 50
-        });
-    });
+            $(window).ready(function() {
+                $("#nurse_book").turn({
+                    display: 'double',
+                    acceleration: true,
+                    elevation: 50
+                });
+                $("#engle_book").turn({
+                    display: 'double',
+                    acceleration: true,
+                    elevation: 50
+                });
+                $("#turbine_book").turn({
+                    display: 'double',
+                    acceleration: true,
+                    elevation: 50
+                });
+                $("#nano_book").turn({
+                    display: 'double',
+                    acceleration: true,
+                    elevation: 50
+                });
+                $("#caregiver_book").turn({
+                    display: 'double',
+                    acceleration: true,
+                    elevation: 50
+                });
+                $("#oxidation_book").turn({
+                    display: 'double',
+                    acceleration: true,
+                    elevation: 50
+                });
+            });
 
-      $(window).on("swipeleft", function(event) {
-          //$('#nurse_book').turn('next');
-          $('#oxidation_book').turn('next');
-          console.log('swipe left');
-      });
-      $(window).on("swiperight", function(event) {
-         // $('#nurse_book').turn('previous');
-          $('#oxidation_book').turn('previous');
-          console.log('swipe right')
-      });
+            $(window).on("swipeleft", function(event) {
+                //$('#nurse_book').turn('next');
+                $('#oxidation_book').turn('next');
+                console.log('swipe left');
+            });
+            $(window).on("swiperight", function(event) {
+                // $('#nurse_book').turn('previous');
+                $('#oxidation_book').turn('previous');
+                console.log('swipe right')
+            });
 
-    /*$(window).bind('keydown', function(e) {
-        if (e.keyCode==37)
-            $('#book').turn('previous');
-        else if (e.keyCode==39)
-            $('#book').turn('next')
-    });*/
+            /*$(window).bind('keydown', function(e) {
+                if (e.keyCode==37)
+                    $('#book').turn('previous');
+                else if (e.keyCode==39)
+                    $('#book').turn('next')
+            });*/
 
-    /////////CODE FOR NAVIGATION//////////
-    //button for the hamburger icon
-    var openNav = document.getElementById('icon')
-    openNav.addEventListener('click', function() {
-      if($('#header').css('display') == 'none'){
-        $('#header').show('slow');
-        $('#navbar').show('slow');
-        $('#info').show('slow');
-      } else {
-        $('#header').hide('slow');
-        $('#navbar').hide('slow');
-        $('#info').hide('slow');
-        $('#faq').hide('slow');
-        $('#collections').hide('slow');
-      }
-    })
+            /////////CODE FOR NAVIGATION//////////
+            //button for the hamburger icon
+            var openNav = document.getElementById('icon')
+            openNav.addEventListener('click', function() {
+                if($('#header').css('display') == 'none'){
+                    $('#header').show('slow');
+                    $('#navbar').show('slow');
+                    $('#info').show('slow');
+                    $('#abtBtn').css('color', '#cc4c02')
+                } else {
+                    $('#header').hide('slow');
+                    $('#navbar').hide('slow');
+                    $('#info').hide('slow');
+                    $('#faq').hide('slow');
+                    $('#collections').hide('slow');
+                    $('#abtBtn').css('color', '#fff')
+                    $('#faqBtn').css('color', '#fff')
+                    $('#colBtn').css('color', '#fff')
+                }
+            })
 
-    //button for basic information
-    var abtBtn = document.getElementById('abtBtn')
-    abtBtn.addEventListener('click', function() {
-      $('#faq').hide('slow');
-      $('#collections').hide('slow');
-      if($('#info').css('display') == 'none'){
-        $('#info').show('slow');
-      } else {
-        $('#info').hide('slow');
-      }
-    })
+            //button for basic information
+            var abtBtn = document.getElementById('abtBtn')
+            abtBtn.addEventListener('click', function() {
+                $('#faq').hide('slow');
+                $('#collections').hide('slow');
+                $('#faqBtn').css('color', '#fff')
+                $('#colBtn').css('color', '#fff')
+                if($('#info').css('display') == 'none'){
+                    $('#info').show('slow');
+                    $('#abtBtn').css('color', '#cc4c02')
+                } 
+            })
 
-    //button for faqs
-    var faqBtn = document.getElementById('faqBtn')
-    faqBtn.addEventListener('click', function() {
-      $('#info').hide('slow');
-      $('#collections').hide('slow');
-      if($('#faq').css('display') == 'none'){
-        $('#faq').show('slow');
-      } else {
-        $('#faq').hide('slow');
-      }
-    })
+            //button for faqs
+            var faqBtn = document.getElementById('faqBtn')
+            faqBtn.addEventListener('click', function() {
+                $('#info').hide('slow');
+                $('#collections').hide('slow');
+                $('#abtBtn').css('color', '#fff')
+                $('#colBtn').css('color', '#fff')
+                if($('#faq').css('display') == 'none'){
+                    $('#faq').show('slow');
+                    $('#faqBtn').css('color', '#cc4c02')
+                } 
+            })
 
-    //button for collections
-    var colBtn = document.getElementById('colBtn')
-    colBtn.addEventListener('click', function() {
-      $('#info').hide('slow');
-      $('#faq').hide('slow');
-      video.play();
-      if($('#collections').css('display') == 'none'){
-        $('#collections').show('slow');
-      } else {
-        $('#collections').hide('slow');
-      }
-    })
-  </script>
-  <script>
-    // You can also require other files to run in this process
-    require('./renderer.js')
-  </script>
-</body>
+            //button for collections
+            var colBtn = document.getElementById('colBtn')
+            colBtn.addEventListener('click', function() {
+                $('#info').hide('slow');
+                $('#faq').hide('slow');
+                $('#abtBtn').css('color', '#fff')
+                $('#faqBtn').css('color', '#fff')
+                video.play();
+                if($('#collections').css('display') == 'none'){
+                    $('#collections').show('slow');
+                    $('#colBtn').css('color', '#cc4c02')
+                } 
+            })
+        </script>
+        <script>
+            // You can also require other files to run in this process
+            require('./renderer.js')
+        </script>
+    </body>
 </html>

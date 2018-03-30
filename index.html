@@ -267,9 +267,14 @@ Your browser does not support the audio element.
                 function openChild() {
                     video.pause();
                     video.currentTime = 0;
-                    $('#info').hide();
-                    $('#faq').hide();
-                    $('#collections').hide();
+                    $('#header').hide('slow');
+                    $('#navbar').hide('slow');
+                    $('#info').hide('slow');
+                    $('#faq').hide('slow');
+                    $('#collections').hide('slow');
+                    $('#abtBtn').css('color', '#fff')
+                    $('#faqBtn').css('color', '#fff')
+                    $('#colBtn').css('color', '#fff')
                     /*$('#nurse_popup').popup('hide');*/
                     ipcRenderer.send('reset')
                     /*$('#touchPan').show('slow');*/

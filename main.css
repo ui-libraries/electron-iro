@@ -179,3 +179,16 @@ button:focus{
 .popup_content{
     text-align: right!important;
 }
+
+div.hard {
+    background-size: 400px 512px;
+}
+
+.popimg {
+    vertical-align: middle;
+}
+
+#popups p {
+    display: inline;
+    color: #cc4c02
+}

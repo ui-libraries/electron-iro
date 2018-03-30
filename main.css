@@ -38,7 +38,7 @@ body { margin:0; padding:0; overflow: hidden;}
 }
 
 .sideinfo {
-  padding: 0px 20px 0px 20px;
+  padding: 0px 20px 5px 20px;
   margin: 0px;
   font-family: 'Montserrat', serif;
   color: #275f9d;
@@ -145,7 +145,7 @@ button:focus{
    max-height: 100%;
    display: inline-block;
    vertical-align: middle;
-   padding-bottom: 15px;
+   padding-bottom: 5px;
 }
 
 #touchPan {
@@ -185,6 +185,7 @@ div.hard {
 }
 
 .popimg {
+    margin-top: 2px;
     vertical-align: middle;
 }
 

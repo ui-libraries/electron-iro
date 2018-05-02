@@ -3,7 +3,7 @@ In 2018, Iowa Research Online celebrated 10 million downloads on their website. 
 ## Getting Started
 To get a copy of the project up and running on your local machine, follow the instructions below.
 ### Installing
-This project uses Electron, so you will first need to install Node.js and this repository, then run the following commands.
+This project uses Electron, so you will first need to install Node.js and download this repository, then run the following commands.
 ```
 # Navigate to the project folder
 cd iro-electron

@@ -1,28 +1,16 @@
 #login { display: none; }
 #loggedin { display: none; }
-body { margin:0; padding:0; }
+body { margin:0; padding:0; overflow: hidden;}
 #map {
   border-left: 1px solid #fff;
   position: absolute;
   width: 100%;
-  top: 0;
-  bottom: 0;
+  top:0;
+  bottom:0;
 }
 
 #content {
-  /*display: none;*/
   z-index: 10;
-}
-
-#video {
-  background-color: black;
-}
-
-.center {
-  /*display: block;*/
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10%;
 }
 
 .map-legend .swatch {
@@ -31,48 +19,176 @@ body { margin:0; padding:0; }
   float:right;
   margin-right:12px;
   }
+
 .leaflet-popup-close-button {
   display: none;
   }
+
 .leaflet-popup-content-wrapper {
   pointer-events: none;
   }
 
-  /*new code*/
-  .sidebar {
-    width: 27%;
-    height: 100vh;
-    float: right;
-    background-color: #cecece;
-    opacity: 0.75;
-    border-left: 2px solid white;
-    z-index: 1;
-  }
+.sidebar {
+  width: 27%;
+  float: right;
+  background-color: #cecece;
+  opacity: 0.95;
+  border-left: 2px solid white;
+  z-index: 1;
+}
 
-  .info {
-    padding: 0px 20px 0px 20px;
-    margin: 0px;
-    font-family: 'Cormorant Garamond', serif;
-    color: #275f9d;
-    font-weight: 700;
-  }
+.sideinfo {
+  padding: 0px 20px 5px 20px;
+  margin: 0px;
+  font-family: 'Montserrat', serif;
+  color: #275f9d;
+  font-weight: 700;
+  clear: both;
+  border-bottom: 2px solid white;
+}
 
-  .info h3 {
-    font-size: 1.7em;
-    line-height: 5px;
-  }
+.sideinfo h3 {
+  font-size: 1em;
+  line-height: 5px;
+}
 
-  .info p {
-    line-height: 30px;
-    font-size: 1.25em;
-  }
+.sideinfo p{
+  line-height: 15px;
+  font-size: .6em;
+}
 
-  h1 {
-    padding: 0px 20px 0px 20px;
-    font-family: 'Josefin Sans', sans-serif;
+.sideinfo li{
+  font-size: .6em;
+}
+
+.bold {
     color: #cc4c02;
-    font-weight: 800;
-    text-align: center;
-    font-size: 3.5em;
-    border-bottom: 2px solid white;
-  }
+}
+
+#info {
+  display: none;
+}
+
+#faq {
+  display:none;
+}
+
+#collections {
+  display:none;
+}
+
+#collections p {
+  font-size: .6em;
+}
+
+#header {
+  padding: 0px 20px 0px 20px;
+  border-bottom: 2px solid white;
+  display: none;
+}
+
+#header h1 {
+  padding: 0px 0px;
+  margin: 25px 0px 0px 0px;
+  font-family: 'Montserrat', sans-serif;
+  color: #275f9d;
+  font-weight: 800;
+  text-align: center;
+  font-size: 2em;
+}
+
+#navbar {
+  padding: 0px 20px 0px 20px;
+  margin: 0px;
+  font-family: 'Montserrat', serif;
+  font-weight: 700;
+  clear: both;
+  border-bottom: 2px solid white;
+  text-align: center;
+  display: none;
+}
+
+#navbar button {
+  background-color: #cecece;
+  color: #fff;
+  opacity: 0.95;
+  border: none;
+  font-size: .8em;
+  font-weight: 500;
+  margin: 5px 5px;
+}
+
+button:focus{
+    outline:0;
+    color:#cc4c02!important;
+}
+
+#icon {
+  margin: 10px 0px 10px 10px;
+  padding: 10px 10px;
+  float: right;
+  background-color: #cecece;
+  opacity: 0.99;
+  border: 3px solid white;
+  border-right: none;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 7px;
+  z-index: 2;
+  position:relative;
+  right:-2px;
+}
+
+#my-video {
+  max-width: 100%;
+   max-height: 100%;
+   display: inline-block;
+   vertical-align: middle;
+   padding-bottom: 12px;
+}
+
+#touchPan {
+  margin: 10px 0px 10px 10px;
+  padding: 10px 10px;
+  opacity: 0.95;
+  position: fixed;
+  width: 15%;
+  height: 10%;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  margin-top: -7%;
+  margin-left: -5%;
+}
+
+/*STUFF FOR BOOK*/
+.book {
+    width: 768px;
+    height: 512px;
+}
+
+.book .turn-page {
+    background-color: #ddd;
+    background-size: 100% 100%;
+}
+
+.popup {
+    overflow: hidden;
+}
+.popup_content{
+    text-align: right!important;
+}
+
+div.hard {
+    background-size: 400px 512px;
+}
+
+.popimg {
+    margin-top: 2px;
+    vertical-align: middle;
+}
+
+#popups p {
+    display: inline;
+}
